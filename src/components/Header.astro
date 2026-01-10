@@ -5,7 +5,16 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<style>
+			/* Add this inside the <style> block at the top */
+			.brand-logo {
+				font-weight: 800;
+				letter-spacing: -0.5px;
+				color: #000; /* or your brand color */
+			}
+		</style>
+
+		<h2><a href="/" class="brand-logo">{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>

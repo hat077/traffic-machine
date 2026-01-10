@@ -1,18 +1,20 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
+// This function tells Astro: "Go find every single blog post and make a URL for it"
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.id },
+		params: { slug: post.slug },
 		props: post,
 	}));
 }
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const { Content } = await render(post);
+// This renders the Markdown content into HTML
+const { Content } = await post.render();
 ---
 
 <BlogPost {...post.data}>
