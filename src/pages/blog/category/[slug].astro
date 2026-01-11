@@ -49,13 +49,15 @@ const { category, posts } = Astro.props;
 			<ul>
 				{posts.map((post) => (
 					<li>
-						<a href={`/blog/${post.slug}/`}>
-                            {/* This assumes you have images. If not, remove the img tag */}
+						{/* LINK 1: The Image (Cleaned URL) */}
+						<a href={`/blog/${post.slug.replace(/\.md$/, '')}/`}>
 							<img src={post.data.heroImage} alt="" />
 						</a>
                         <div>
                             <div class="date">{post.data.pubDate.toLocaleDateString()}</div>
-                            <a href={`/blog/${post.slug}/`}>
+							
+							{/* LINK 2: The Title (Cleaned URL) */}
+                            <a href={`/blog/${post.slug.replace('.md', '')}/`}>
                                 <h2>{post.data.title}</h2>
                             </a>
                             <p>{post.data.description}</p>
